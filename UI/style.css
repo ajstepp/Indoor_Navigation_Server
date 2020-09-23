@@ -50,11 +50,11 @@ h1{
 .loginbox input[type="text"], input[type="password"]
 {
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #000;
     background: transparent;
     outline: none;
     height: 40px;
-    color: #fff;
+    color: #000;
     font-size: 16px;
 }
 .loginbox input[type="submit"]
