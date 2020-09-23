@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";  //call configuration file for SQL server authentication
+require_once "utils.php";  //call configuration file for SQL server authentication
  
 //create variables
 $username = "";
@@ -61,8 +61,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $sql = "INSERT INTO users (username, password) VALUES (?, ?)"; //create insert statement 
          
         if($stmt = mysqli_prepare($link, $sql)){
-            mysqli_stmt_bind_param($stmt, "ss", $username, $password);  //bind variables to insert statement
+            mysqli_stmt_bind_param($stmt, "ss", $username, $hash_password);  //bind variables to insert statement
             
+            $hash_password = password_hash($password, PASSWORD_DEFAULT);
             if(mysqli_stmt_execute($stmt)){     //execute statement and check to see if it worked
                 header("location: login.php");  //it worked, redirected to login, attempt to authenticate with new credentials
             } else{

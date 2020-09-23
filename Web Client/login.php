@@ -2,14 +2,13 @@
 // Create session
 session_start();
  
-// Check if session is already created, if so, reroute to welcome
+// Check if session is already created, if so, reroute to index
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-  header("location: welcome.php");
+  header("location: index.php");
   exit;
 }
  
-// import config file to connect to DB
-require_once "config.php";
+require_once "utils.php";   //utilities to connect to DB
  
 // create variables
 $username =""; 
@@ -54,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;   //session is now logged in and attached to instance
                             $_SESSION["id"] = $id;  //pull id from database, attach to instance
                             $_SESSION["username"] = $username;  //pull username from database, attach to instance                            
-                            header("location: welcome.php");    //move session to welcome page
+                            header("location: index.php");    //move session to index page
                             
                             /* is this too much? do we not want something more generic? */
                         } else{
@@ -64,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     
                     /* is this too much? do we not want something more generic? */
                 } else{
-                    $username_err = "Invaloud Username";  //display error message for username  
+                    $username_err = "Invalid Username";  //display error message for username  
                 }
             } else{
                 echo "Something went wrong";    //statement could not execute, make sure variables/table/database has not been renamed
