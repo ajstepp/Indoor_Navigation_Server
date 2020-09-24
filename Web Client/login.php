@@ -82,10 +82,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+      <link rel="stylesheet" type="text/css" href="style.css">
     <title>Indoor Nav Login</title>
 </head>
 <body>
-    <div>
+    <div class="loginbox">
+        <img src="avatar.png" class="avatar">
         <h2>Please login to indoor navigation server</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div>

@@ -84,11 +84,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Create Account</title>
 </head>
     
 <body>
-    <div>
+    <div class="loginbox">
         <h2>Create Account</h2>
         <p>Create credentials</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
