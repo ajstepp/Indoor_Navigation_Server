@@ -6,10 +6,11 @@ $file = $_POST['file'];
 $fileName = $_POST['fileName'];
 $organization = $_SESSION['organization'];
 $queryText = "INSERT INTO Maps(file, fileName, Organization) VALUES(? ? ?)";
-if($stmt = $mysqli.prepare($queryText)){
+if($stmt = mysqli_prepare($link, $queryText)){
 
-	$stmt.bind_param("sss", $file, $fileName, $organization);
-	$stmt.execute();
+	mysqli_stmt_bind_param("sss", $file, $fileName, $organization);
+	mysqli_stmt_execute($stmt);
+	mysqli_commit($link);
 
 }
 
