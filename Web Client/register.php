@@ -80,47 +80,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 <!--barebones HTML as proof of working PHP-->
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Create Account</title>
 </head>
-    
 <body>
     <div class="loginbox">
-        <h2>Create Account</h2>
-        <p>Create credentials</p>
+    <img src="avatar.png" class="avatar">
+        <h1>Create Account</h1>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div>
-                <label>Username</label>
-                <input type="text" name="username" value="<?php echo $username; ?>">
+                <p>Username</p>
+                <input type="text" name="username" placeholder="Enter Username" value="<?php echo $username; ?>">
                 <span style ="color:red;"> <!--Error set to red for easy identification-->
-                    <br>
                     <?php echo $username_err; ?>
                 </span>
-            </div>
-            
-            <div>
-                <label>Password</label>
-                <input type="password" name="password" value="<?php echo $password; ?>">
+                <p>Password</p>
+                <input type="password" name="password" placeholder="Enter Password" value="<?php echo $password; ?>">
                 <span style ="color:red;"> <!--Error set to red for easy identification-->
                     <?php echo $password_err; ?>
                 </span>
-            </div>
-            
-            <div>
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" value="<?php echo $confirm_password; ?>">
+                <p>Confirm Password</p>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" value="<?php echo $confirm_password; ?>">
                 <span><?php echo $confirm_password_err; ?></span>
-            </div>
-            
-            <div>
                 <input type="submit" value="Create Account">
                 <input type="reset" value="Reset Form">
-            </div>
-            
             <p>Already a member? <a href="login.php">Login here</a></p>
         </form>
     </div>    

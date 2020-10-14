@@ -78,40 +78,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
  
 <!-- very basic display code to test PHP, will be replaced in the future with something that doesn't look so ugly -->
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-      <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Indoor Nav Login</title>
 </head>
 <body>
     <div class="loginbox">
         <img src="avatar.png" class="avatar">
-        <h2>Please login to indoor navigation server</h2>
+        <h1>Please login to indoor navigation server</h1>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div>
-                <label>Username</label>
-                <input type="text" name="username" value="<?php echo $username; ?>">
-                <span style="color:red";> <!--error color read, fast to identify-->
-                    <br> 
-                    <?php echo $username_err; ?>
-                </span>
-            </div>
-            <br>
-            <div>
-                <label>Password</label>
-                <input type="password" name="password">
-                <span style ="color:red;"> <!--error color read, fast to identify-->
-                    <br> 
-                    <?php echo $password_err; ?>
-                </span>
-            </div>
-            <br>
-            <br>
-            <div>
-                <input type="submit" value="Login">
-            </div>
+            <p>Username</p>
+            <input type="text" name="username" placeholder="Enter Username" value="<?php echo $username; ?>">
+            <span style="color:red";> <!--error color read, fast to identify-->
+                <?php echo $username_err; ?>
+            </span>
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password">
+            <span style ="color:red;"> <!--error color read, fast to identify-->
+                <?php echo $password_err; ?>
+            </span>
+            <input type="submit" value="Login">
+            <br></br>
             <p>Need an account? <a href="register.php">Sign Up</a></p>
         </form>
     </div>    
