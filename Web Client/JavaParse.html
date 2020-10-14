@@ -1,0 +1,21 @@
+<script type="text/javascript">
+        
+       
+    function calc(url) {
+    var img = new Image();
+        var iWidth, iHeight;
+        img.src = url; 
+        img.onload = function GetDim() {
+            iWidth = this.width;
+            iHeight = this.height;
+            
+            alert(iWidth + 'x' + iHeight)
+        }
+
+        reutrn (iHeight, iWidth);
+               
+    }
+    
+    calc("avatar.png");
+    
+    </script>
