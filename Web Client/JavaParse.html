@@ -1,21 +1,45 @@
-<script type="text/javascript">
-        
-       
-    function calc(url) {
-    var img = new Image();
+<html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<canvas id="viewport"></canvas>
+<script>
+    function grid(url) {
+
+        var canvas = document.getElementById('viewport');
+        context = canvas.getContext('2d');
+
+        var img = new Image();
+        var p = 10;
         var iWidth, iHeight;
-        img.src = url; 
+        img.src = url;
         img.onload = function GetDim() {
             iWidth = this.width;
             iHeight = this.height;
-            
-            alert(iWidth + 'x' + iHeight)
-        }
+            canvas.width = iWidth;
+            canvas.height = iHeight;
+            context.drawImage(img, 10, 10);
 
-        reutrn (iHeight, iWidth);
-               
+            for (var x = 0; x <= iWidth; x += 50) {
+                context.moveTo(x + p, 0);
+                context.lineTo(x + p, iHeight + p);
+            }
+
+
+            for (var x = 0; x <= iHeight; x += 50) {
+                context.moveTo(0, 0.5 + x + p);
+                context.lineTo(iWidth + p, 0.5 + x + p);
+            }
+
+            context.strokeStyle = "black";
+            context.stroke();
+
+            alert(iWidth + 'x' + iHeight);
+        }
     }
-    
-    calc("avatar.png");
-    
-    </script>
+
+    //this is a test image
+    grid("testpic.jpg");
+
+</script>
+
+</html>
