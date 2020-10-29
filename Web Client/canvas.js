@@ -1,14 +1,10 @@
-<html>
-<link rel="stylesheet" type="text/css" href="style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="CanvasInput.min.js"></script>
-<canvas id="canvas"></canvas>
-<script>
-    function grid(url) {
+const canvas = document.querySelector('#canvas');
 
-      var canvas = document.getElementById('canvas');
-        context = canvas.getContext('2d');
+ // Context for the canvas for 2 dimensional operations 
+ const context = canvas.getContext('2d');
 
+
+function grid(url) {
         var img = new Image();
         var p = 10;
         var iWidth, iHeight;
@@ -20,7 +16,7 @@
             canvas.height = iHeight;
             context.drawImage(img, 10, 10);
 
-           /* for (var x = 0; x <= iWidth; x += 50) {
+            /* for (var x = 0; x <= iWidth; x += 50) {
                 context.moveTo(x + p, 0);
                 context.lineTo(x + p, iHeight + p);
             }
@@ -32,22 +28,10 @@
             }
 
             context.strokeStyle = "black";
-            context.stroke(); 
-*/
+            context.stroke(); */
+
             alert(iWidth + 'x' + iHeight);
         }
-    } 
+    }
 
-    //this is a test image 
-    grid("testpic.jpg"); 
-
-</script>
-
-
-
-<script src="MarkLocation.js"></script>
-
-
-<!-- <script src="JavaParse.js"></script> -->
-
-</html>
+grid("testpic.jpg");
