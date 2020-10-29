@@ -1,5 +1,5 @@
  window.addEventListener('load', () => {
-     document.addEventListener("click", mark);
+     document.addEventListener("dblclick", mark);
      /*context.beginPath();
      context.rect(20, 20, 150, 100);
      context.stroke();*/
