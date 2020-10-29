@@ -55,7 +55,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){ //check ses
             <div class="carousel-caption">
                 <h1>Indoor Navigation Server</h1>
                 <br>
-                <button type="button" class="btn btn-default">Create Map</button>
+                <a href="mapCreator.php"><button type="button" class="btn btn-default">Create Map</button></a>
             </div>
             </div> <!--- End Active -->
             <div class="item">
