@@ -27,7 +27,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if(mysqli_stmt_num_rows($stmt) == 1){ //value returns 1, username is already taken
                     $username_err = "Username is taken";    //error message for taken username
                 } else{
-                    $username = trim($_POST["username"]);   //trim white space off of username
+			$username = trim($_POST["username"]);   //trim white space off of username
+			mkdir('/uploads/'.$username, 0755, true);
                 }
             } else{
                 echo "something went wrong";    //connection to SQL server failed, check variable/table/database names

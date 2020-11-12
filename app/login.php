@@ -90,7 +90,6 @@ if(mysqli_query($link, "UPDATE users SET sess_cookie = '".$_COOKIE['PHPSESSID'].
 	header("Location: index.php");
 }
 else {
-	echo "FUCK";
 	echo mysqli_error($link);
 }
  
