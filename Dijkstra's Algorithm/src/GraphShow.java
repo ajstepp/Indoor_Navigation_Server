@@ -1,6 +1,11 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class GraphShow {
-    public static void main(String[] args) {
-        GraphWeighted graphWeighted = new GraphWeighted(true);
+    public static void main(String[] args) throws IOException {
+        GraphWeighted graphWeighted = new GraphWeighted(false);
         NodeWeighted zero = new NodeWeighted(0, "0");
         NodeWeighted one = new NodeWeighted(1, "1");
         NodeWeighted two = new NodeWeighted(2, "2");
@@ -25,6 +30,19 @@ public class GraphShow {
         graphWeighted.addEdge(three, two, 4);
         graphWeighted.addEdge(three, four, 2);
         graphWeighted.addEdge(three, six, 4);
+        graphWeighted.printEdges();
         graphWeighted.DijkstraShortestPath(eight, six);
+
+        File f=new File(“H:\data.txt”);
+        FileReader fre=new FileReader(f);
+        BufferedReader bre=new BufferedReader(fre);
+        String str="";
+        while((str=bre.readLine())!=null)
+        {
+            //System.out.println(str);
+            graphWeighted.addEdge(str);
+        }
+        bre.close();
+        fre.close();
     }
 }
