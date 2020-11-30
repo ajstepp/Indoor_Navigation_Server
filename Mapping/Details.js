@@ -9,13 +9,17 @@ window.addEventListener('load', () => { //event listener to make sure window loa
 
  const context = canvas.getContext('2d'); //assign canvas context
 
+ const Stored_Coordinates = new Array();
  //set initial coordinates
  let coord = {
      x: 0,
      y: 0
  };
 
-
+function coordinate(x, y) {
+    this.x = x;
+    this.y = y;
+}
 //function to create POI on canvas
  function mark(event) {
      getPosition(event); //call the getPosition method to find out where the click is
@@ -24,15 +28,17 @@ window.addEventListener('load', () => { //event listener to make sure window loa
      context.strokeStyle = 'black'; //make color of rectangle black
      context.lineWidth = 1; //thin line width
      context.stroke(); //draw this rectangle
-
+     Stored_Coordinates.push(new coordinate(coord.x, coord.y));
+     var check = Stored_Coordinates.length - 1;
+     //alert ("X:" + Stored_Coordinates[check].x + "  Y:" + Stored_Coordinates[check].y);
      //call CanvasInput.min.js input function to create a new textbox under the rect in canvas
      var input = new CanvasInput({ 
          canvas: document.getElementById('canvas'), //get canvas object
          x: coord.x - 75, //center on x 
          y: coord.y + 20, // drop below rect on y
-         placeHolder: 'Enter area name here..' //placeholder text
+         placeHolder: 'Enter area name here..' //placeholder text 
      });
-
+     
  }
 
  let paint = false; //initially set the paint functions to off
