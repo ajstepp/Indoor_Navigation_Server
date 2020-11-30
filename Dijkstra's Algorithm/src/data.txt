@@ -1,0 +1,12 @@
+eight, zero, 1
+eight, one, 5
+zero, two, 2
+two, five, 9
+six, five, 2
+seven, six, 3
+four, seven, 1
+one, four, 3
+eight, three, 9
+three, two, 4
+three, four, 2
+three, six, 4
