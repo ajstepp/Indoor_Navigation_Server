@@ -18,7 +18,7 @@ public class GraphShow {
         // Our addEdge method automatically adds Nodes as well.
         // The addNode method is only there for unconnected Nodes,
         // if we wish to add any
-        graphWeighted.addEdge(eight, zero, 1);
+        /*graphWeighted.addEdge(eight, zero, 1);
         graphWeighted.addEdge(eight, one, 5);
         graphWeighted.addEdge(zero, two, 2);
         graphWeighted.addEdge(two, five, 9);
@@ -31,18 +31,18 @@ public class GraphShow {
         graphWeighted.addEdge(three, four, 2);
         graphWeighted.addEdge(three, six, 4);
         graphWeighted.printEdges();
-        graphWeighted.DijkstraShortestPath(eight, six);
+        graphWeighted.DijkstraShortestPath(eight, six);*/
 
-        File f=new File(“H:\data.txt”);
-        FileReader fre=new FileReader(f);
-        BufferedReader bre=new BufferedReader(fre);
-        String str="";
-        while((str=bre.readLine())!=null)
-        {
-            //System.out.println(str);
-            graphWeighted.addEdge(str);
+        String filePath = "/data.txt";
+        FileInputStream fin = new FileInputStream(filePath);
+        InputStreamReader reader = new InputStreamReader(fin);
+        BufferedReader buffReader = new BufferedReader(reader);
+        String strTmp = "";
+        while((strTmp = buffReader.readLine())!=null){
+            System.out.println(strTmp);
+            graphWeighted.addEdge(strTmp);
         }
-        bre.close();
-        fre.close();
+        buffReader.close();
+        graphWeighted.DijkstraShortestPath(eight, six);
     }
 }
