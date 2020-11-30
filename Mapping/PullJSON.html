@@ -18,7 +18,10 @@ document.getElementById('load').addEventListener('change', function () { //load 
 
 // this function executes when the contents of the file have been fetched
 reader.onload = function () {
-  var data = JSON.parse(reader.result);
+  var AllText = reader.result;
+  var MapText = AllText.split('\n');
+    
+  var data = JSON.parse(MapText[0]);
   var image = new Image();
   image.onload = function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
