@@ -28,16 +28,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){ //check ses
 				echo '<div class="BuildingClass">';
 				echo $row["siteName"];
 				echo "<a href='newMap.php?building=".$row["id"]."'>[+]</a>";
-					echo '<div class="FloorClass">';
+				echo '<div class="FloorClass">';
+
 					$floorQuery = "SELECT * FROM Maps WHERE buildingId = '".$row["id"]."';";
 					$floors = mysqli_query($link, $floorQuery);
 					if(mysqli_num_rows($floors) > 0) {
 						while($j = mysqli_fetch_array($floors)){
-							echo "<img src='/uploads/".$j["fileName"]."' height=300 width=300> <br>";
+							echo "<a href='routeBuilder.php?floor=".$j['fileName']."'><img src='/uploads/".$j["fileName"]."' height=300 width=300> </a><br>";
+
 						}
 					}
 					echo '</div>';
-				echo "</div>";
+
+					echo "</div>";
 			}
 		}
     ?>

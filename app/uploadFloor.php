@@ -20,7 +20,7 @@ $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 $buildingId = $_POST['hiddenBuildingId'];
 $fullPath = $username."/".$targetFile.".png";
 echo $fullPath;
-if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], "/uploads/".$username."/".$targetFile.".png")){
+if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], "/var/www/html/Indoor_Navigation_Server/app/uploads/".$fullPath)){
 	echo "File uploaded successfully";
 }
 else {

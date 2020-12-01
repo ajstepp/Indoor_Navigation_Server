@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $username_err = "Username is taken";    //error message for taken username
                 } else{
 			$username = trim($_POST["username"]);   //trim white space off of username
-			mkdir('/uploads/'.$username, 0755, true);
+			mkdir('/var/www/html/Indoor_Navigation_Server/app/uploads/'.$username, 0755, true);
                 }
             } else{
                 echo "something went wrong";    //connection to SQL server failed, check variable/table/database names
