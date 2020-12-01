@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+var context = null;
+var tileW = 40, tileH = 40;
+var mapW = 10, mapH = 10;
+
+var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
+
+var gameMap = [
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+];
+
+window.onload = function()
+{
+	context = document.getElementById('game').getContext('2d');
+	requestAnimationFrame(drawSquare);
+};
+
+function drawSquare()
+{
+	if(context == null) {return;}
+	
+	var sec = Math.floor(Date.now()/1000);
+	if(sec!=currentSecond)
+	{
+		currentSecond = sec;
+		framesLastSecond = frameCount;
+		frameCount = 1;
+	}
+	else { framecount++; }
+	
+	for(var y = 0; y < mapH; y++)
+	{
+		for(var x = 0; x < mapW; x++)
+		{
+			switch(gameMap[((y*mapW) + x)])
+			{
+				case 0:
+					context.fillStyle = "#999999";
+					break;
+				default:
+					context.fillStyle = "#000000";
+			}
+			context.fillRect(x*tileW, y*tileH, tileW, tileH);
+		}
+	}
+	context.fillStyle = "#ff0000";
+}
+</script>
+</head>
+<body>
+<canvas id="game" width="400" height="400"></canvas>
+
+</body>
+</html>
