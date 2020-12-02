@@ -7,12 +7,12 @@ document.getElementById('save').addEventListener('click', function () {
         image: canvasContents,
         date: Date.now()
     };
-    
+
     var map = JSON.stringify(data);
     var map = map + "\n";
-    
+
     var points = "";
-    
+
     for (var i=0; i<Stored_Coordinates.length;i++) {
         points += JSON.stringify(Stored_Coordinates[i]);
         points += "\t";
@@ -21,12 +21,62 @@ document.getElementById('save').addEventListener('click', function () {
     var file = new Blob([map, points], {
         type: 'application/json',
     });
-    
+
     // trigger a click event on an <a> tag to open the file explorer
     var a = document.createElement('a');
     a.href = URL.createObjectURL(file);
-    a.download = 'Completed_Map.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+ //   document.body.appendChild(a);
+//    a.download = 'Completed_Map.json'; 
+//    a.click();
+//    document.body.removeChild(a);
+
+    var getblob = new XMLHttpRequest();
+    getblob.onreadystatechange = function() {
+    	if (getblob.readyState == 4 && getblob.status == 200){
+		console.log("got something");
+	}
+    
+    }
+    getblob.open("GET", a.href, false);
+    getblob.send();
+	
+
+	
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if( xhr.readyState==4 && xhr.status==200 ) {
+		console.log(xhr);
+		}
+	};  
+    console.log(getblob.response);
+    xhr.open("POST", '/uploadBlob.php', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var params = "fileName='"+path+"'&imageData='"+getblob.response+ "'";
+    
+    xhr.send(params);
+
+
+
+//    $.post("uploadBlob.php", {fileName: "TestingCm/MediaCenter.png", imageData: file})
+//	.done(function(data) {
+//		alert("Data Loaded: " + data);
+//	}
+//	);
+
+//    $.ajax({
+//            type: 'POST',
+//            url: '/uploadBlob.php',
+//            data: { name: "TestingCm/MediaCenter.png", imageData: file },
+//            processData: false,
+//            contentType: 'application/json',
+//	    success: function(data) {
+//	    alert("bwah");
+//	    }
+//        }).done(function(data) {
+//            // print the output from the upload.php script
+//		alert("maybeSuccess?");
+//        });
 });
+

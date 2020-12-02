@@ -9,7 +9,6 @@
 <script>
     //function to take an image and press it onto a canvas dynamically
 function loadImage(url) {
-
         var canvas = document.getElementById('canvas'); //get canvas object pointer
         var context = canvas.getContext('2d'); //add context of canvas
 
@@ -31,8 +30,8 @@ function loadImage(url) {
 
 
 	let params = new URLSearchParams(location.search);
-	var path = params.get('floor');
-    loadImage("/uploads/" + path);
+	const path = params.get('floor');
+        loadImage("/uploads/" + path);
 
 </script>
 
