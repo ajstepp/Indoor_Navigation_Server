@@ -51,10 +51,25 @@
                         </button>
                         -->
                         <button type="button" class="btn btn-default"><a href="newBuilding.php">Create a new Buildling</a></button>
-                        <button type="button" class="btn btn-default"><a href="buildingViewer.php">View your Buildings</a></button>
-                        <button type="button" class="btn btn-default"><a href="newMap.php">Upload an Image</a></button>
+						<button type="button" class="btn btn-default"><a href="buildingViewer.php">View your Buildings</a></button>
+						<button type="button" class="btn btn-default"><a href="newMap.php">Upload an Image</a></button>
                     </div>
-                </div>
+				</div>
+				
+				<form action="./uploadFloor.php" enctype="multipart/form-data" method="POST">
+					<label>File name </label>
+					<input type="text" value="fileName" name="fileName">
+					<br>
+					<label>File</label>
+					<input type="file"  name="fileUpload" accept="image/png, image/jpeg" id="fileUpload">
+					<br>
+<?php
+					echo '<input type="hidden" name="hiddenBuildingId" value="'.$_GET["building"].'">';
+
+?>
+					<input type="submit" value="Submit">
+				</form>
+
                 <br>
                 <br>
                 <br>
@@ -64,4 +79,5 @@
 
     </div>
 </body>
+</html>
 </html>

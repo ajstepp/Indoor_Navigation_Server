@@ -52,9 +52,12 @@
                         -->
                         <button type="button" class="btn btn-default"><a href="newBuilding.php">Create a new Buildling</a></button>
                         <button type="button" class="btn btn-default"><a href="buildingViewer.php">View your Buildings</a></button>
+                        <button type="button" class="btn btn-default"><a href="newMap.php">Upload an Image</a></button>
                     </div>
                 </div>
-
+                <br>
+                <br>
+                <br>
                 <form action="./uploadBuilding.php" enctype="multipart/form-data" method="POST">
                         <label>Building Name </label>
                         <input type="text" name="Site_Name" id="Site_Name_id">
