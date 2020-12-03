@@ -53,6 +53,10 @@
                         <button type="button" class="btn btn-default"><a href="newBuilding.php">Create a new Buildling</a></button>
 						<button type="button" class="btn btn-default"><a href="buildingViewer.php">View your Buildings</a></button>
 						<button type="button" class="btn btn-default"><a href="newMap.php">Upload an Image</a></button>
+						<br>
+						<br>
+						<br>
+						<br>
                     </div>
 				</div>
 				
