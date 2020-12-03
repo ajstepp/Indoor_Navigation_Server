@@ -55,6 +55,32 @@
                     </div>
                 </div>
                 <img id="output" width="1000" class="float-right"/>
+                <?php
+
+                    require_once "utils.php";
+                    $query = "SELECT * FROM Buildings WHERE	userName = '".$_SESSION["username"]."';";
+                    $Buildings = mysqli_query($link, $query);
+                    if(mysqli_num_rows($Buildings) > 0){
+                        while( $row = mysqli_fetch_array($Buildings)){
+                            echo '<div class="BuildingClass">';
+                            echo $row["siteName"];
+                            echo "<a href='newMap.php?building=".$row["id"]."'>[+]</a>";
+                            echo '<div class="FloorClass">';
+
+                                $floorQuery = "SELECT * FROM Maps WHERE buildingId = '".$row["id"]."';";
+                                $floors = mysqli_query($link, $floorQuery);
+                                if(mysqli_num_rows($floors) > 0) {
+                                    while($j = mysqli_fetch_array($floors)){
+                                        echo "<a href='routeBuilder.php?floor=".$j['fileName']."'><img src='/uploads/".$j["fileName"]."' height=300 width=300> </a><br>";
+
+                                    }
+                                }
+                                echo '</div>';
+
+                                echo "</div>";
+                        }
+                    }
+                ?>
                 <br>
                 <br>
                 <br>
