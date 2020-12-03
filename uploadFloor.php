@@ -31,5 +31,5 @@ $stmt = mysqli_prepare($link, $queryText);
 mysqli_stmt_bind_param($stmt, "sss", $file, $fullPath, $buildingId);
 mysqli_stmt_execute($stmt);
 mysqli_commit($link);
-header("location: index.php");
+header("location: buildingViewer.php");
 ?>
