@@ -35,8 +35,7 @@
             </div>
         </div>
     </nav>
- 
-    <div class="mapCreator">
+
 
     <div class="container map-creator">
         <div class="row">
@@ -54,7 +53,7 @@
                         <button type="button" class="btn btn-default"><a href="buildingViewer.php">View your Buildings</a></button>
                     </div>
                 </div>
-                <img id="output" width="1000" class="float-right"/>
+
                 <?php
 
                     require_once "utils.php";
@@ -88,6 +87,5 @@
         </div>
     </div>
 
-    </div>
 </body>
 </html>

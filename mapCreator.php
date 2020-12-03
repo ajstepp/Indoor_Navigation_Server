@@ -54,7 +54,6 @@
                         <button type="button" class="btn btn-default"><a href="buildingViewer.php">View your Buildings</a></button>
                     </div>
                 </div>
-                <img id="output" width="1000" class="float-right"/>
                 <br>
                 <br>
                 <br>
