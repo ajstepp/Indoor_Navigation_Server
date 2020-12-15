@@ -1,0 +1,28 @@
+<?php
+require_once "utils.php";
+if (empty($_FILES)){
+	header("location: index.php");
+
+}
+$targetDir = "/uploads/";
+$targetFile = $_FILES["fileUpload"]["name"];
+var_dump($_COOKIE);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+$organization = $_SESSION['organization'];
+
+echo $_FILES['fileUpload']['tmp_name'];
+echo "<br>";
+if (move_uploaded_file($_FILES["fileUpload"]["tmp_name"], "/uploads/".$targetFile)){
+	echo "File uploaded successfully";
+}
+else {
+	echo "File upload failed";
+}
+var_dump($_SESSION);
+$queryText = "INSERT INTO Maps(file, fileName, Organization) VALUES(?, ?, ?);";
+$stmt = mysqli_prepare($link, $queryText);
+mysqli_stmt_bind_param($stmt, "sss", $file, $fileName, $organization);
+mysqli_stmt_execute($stmt);
+mysqli_commit($link);
+?>

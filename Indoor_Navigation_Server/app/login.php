@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 // Create session
 session_start();
  
@@ -49,12 +51,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_fetch($stmt)){   //make sure username exists 
                         if(password_verify($password, $hashed_password)){   //verify entered password matches stored
                             session_start();    //authentication verified, start session
-                            
                             $_SESSION["loggedin"] = true;   //session is now logged in and attached to instance
                             $_SESSION["id"] = $id;  //pull id from database, attach to instance
-                            $_SESSION["username"] = $username;  //pull username from database, attach to instance                            
-                            header("location: index.php");    //move session to index page
-                            
+                            $_SESSION["username"] = $username;  //pull username from database, attach to instance                           
+
+#                            header("location: index.php");    //move session to index page
+
+
                             /* is this too much? do we not want something more generic? */
                         } else{
                             $password_err = "Invalid Password";     //add statement to error string
@@ -69,38 +72,69 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Something went wrong";    //statement could not execute, make sure variables/table/database has not been renamed
             }
 
-            mysqli_stmt_close($stmt);
+	    $sql = "UPDATE users SET sess_cookie = ? WHERE username = ?";
+
+	    mysqli_stmt_close($stmt);
+
         }
     }
     
-    mysqli_close($link);    //break connection to SQL server
+
+    mysqli_close($link);    //break connection to SQL session
+
+
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$sql = "UPDATE users SET sess_cookie = '".$_COOKIE['PHPSESSID']."' WHERE username = '".$username."';";
+echo $sql;
+if(mysqli_query($link, "UPDATE users SET sess_cookie = '".$_COOKIE['PHPSESSID']."' WHERE username = '".$username."';")) {
+	header("Location: index.php");
 }
+else {
+	echo mysqli_error($link);
+}
+ 
+//create connection to SQL database internally 
+
+}
+
+
 ?>
  
 <!-- very basic display code to test PHP, will be replaced in the future with something that doesn't look so ugly -->
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+      <link rel="stylesheet" type="text/css" href="style.css">
     <title>Indoor Nav Login</title>
 </head>
 <body>
     <div class="loginbox">
         <img src="avatar.png" class="avatar">
-        <h1>Please login to indoor navigation server</h1>
+        <h2>Please login to indoor navigation server</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <p>Username</p>
-            <input type="text" name="username" placeholder="Enter Username" value="<?php echo $username; ?>">
-            <span style="color:red";> <!--error color read, fast to identify-->
-                <?php echo $username_err; ?>
-            </span>
-            <p>Password</p>
-            <input type="password" name="password" placeholder="Enter Password">
-            <span style ="color:red;"> <!--error color read, fast to identify-->
-                <?php echo $password_err; ?>
-            </span>
-            <input type="submit" value="Login">
-            <br></br>
+            <div>
+                <label>Username</label>
+                <input type="text" name="username" value="<?php echo $username; ?>">
+                <span style="color:red";> <!--error color read, fast to identify-->
+                    <br> 
+                    <?php echo $username_err; ?>
+                </span>
+            </div>
+            <br>
+            <div>
+                <label>Password</label>
+                <input type="password" name="password">
+                <span style ="color:red;"> <!--error color read, fast to identify-->
+                    <br> 
+                    <?php echo $password_err; ?>
+                </span>
+            </div>
+            <br>
+            <br>
+            <div>
+                <input type="submit" value="Login">
+            </div>
             <p>Need an account? <a href="register.php">Sign Up</a></p>
         </form>
     </div>    
