@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 // Create session
 session_start();
  
@@ -51,13 +49,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_fetch($stmt)){   //make sure username exists 
                         if(password_verify($password, $hashed_password)){   //verify entered password matches stored
                             session_start();    //authentication verified, start session
+                            
                             $_SESSION["loggedin"] = true;   //session is now logged in and attached to instance
                             $_SESSION["id"] = $id;  //pull id from database, attach to instance
-                            $_SESSION["username"] = $username;  //pull username from database, attach to instance                           
-
-#                            header("location: index.php");    //move session to index page
-
-
+                            $_SESSION["username"] = $username;  //pull username from database, attach to instance                            
+                            header("location: index.php");    //move session to index page
+                            
                             /* is this too much? do we not want something more generic? */
                         } else{
                             $password_err = "Invalid Password";     //add statement to error string
@@ -72,15 +69,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Something went wrong";    //statement could not execute, make sure variables/table/database has not been renamed
             }
 
-	    $sql = "UPDATE users SET sess_cookie = ? WHERE username = ?";
-
-	    mysqli_stmt_close($stmt);
-
+            mysqli_stmt_close($stmt);
         }
     }
     
-
-    mysqli_close($link);    //break connection to SQL session
+    mysqli_close($link);    //break connection to SQL server
 
 
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -92,12 +85,7 @@ if(mysqli_query($link, "UPDATE users SET sess_cookie = '".$_COOKIE['PHPSESSID'].
 else {
 	echo mysqli_error($link);
 }
- 
-//create connection to SQL database internally 
-
 }
-
-
 ?>
  
 <!-- very basic display code to test PHP, will be replaced in the future with something that doesn't look so ugly -->

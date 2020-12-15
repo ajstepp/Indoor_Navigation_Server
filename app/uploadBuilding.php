@@ -17,7 +17,7 @@ $stmt = mysqli_prepare($link, $queryText);
 mysqli_stmt_bind_param($stmt, "ssss", $site_name, $floor_count, $username, $address);
 mysqli_stmt_execute($stmt);
 mysqli_commit($link);
-header("location: index.php");
+header("location: mapCreator.php");
 
 
 

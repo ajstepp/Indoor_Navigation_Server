@@ -1,4 +1,3 @@
-
 window.addEventListener('load', () => { //event listener to make sure window loads before loading tools
      document.addEventListener("dblclick", mark); //if double click, call mark
      document.addEventListener('mousedown', startPainting); //if click and hold, start painting
@@ -11,13 +10,16 @@ window.addEventListener('load', () => { //event listener to make sure window loa
  const context = canvas.getContext('2d'); //assign canvas context
 
  const Stored_Coordinates = new Array();
+
+
  //set initial coordinates
  let coord = {
      x: 0,
      y: 0
  };
 
-function coordinate(x, y) {
+function coordinate(name, x, y) {
+    this.name = name;
     this.x = x;
     this.y = y;
 }
@@ -29,43 +31,23 @@ function coordinate(x, y) {
      context.strokeStyle = 'black'; //make color of rectangle black
      context.lineWidth = 1; //thin line width
      context.stroke(); //draw this rectangle
-     Stored_Coordinates.push(new coordinate(coord.x, coord.y));
-     var check = Stored_Coordinates.length - 1;
-     //alert ("X:" + Stored_Coordinates[check].x + "  Y:" + Stored_Coordinates[check].y);
+     var check = Stored_Coordinates.length;
      //call CanvasInput.min.js input function to create a new textbox under the rect in canvas
      var input = new CanvasInput({
          canvas: document.getElementById('canvas'), //get canvas object
          x: coord.x - 75, //center on x
          y: coord.y + 20, // drop below rect on y
-         placeHolder: 'Enter area name here..' //placeholder text
-     });
+         value: 'Node ' + check, //placeholder text
 
- }function coordinate(x, y) {
-    this.x = x;
-    this.y = y;
-}
-//function to create POI on canvas
- function mark(event) {
-     getPosition(event); //call the getPosition method to find out where the click is
-     context.beginPath(); //navigate to path
-     context.rect(coord.x - 15, coord.y - 15, 30, 30); //draw a rectangle outline of the clicked location
-     context.strokeStyle = 'black'; //make color of rectangle black
-     context.lineWidth = 1; //thin line width
-     context.stroke(); //draw this rectangle
-     Stored_Coordinates.push(new coordinate(coord.x, coord.y));
-     var check = Stored_Coordinates.length - 1;
-     //alert ("X:" + Stored_Coordinates[check].x + "  Y:" + Stored_Coordinates[check].y);
-     //call CanvasInput.min.js input function to create a new textbox under the rect in canvas
-     var input = new CanvasInput({
-         canvas: document.getElementById('canvas'), //get canvas object
-         x: coord.x - 75, //center on x
-         y: coord.y + 20, // drop below rect on y
-         placeHolder: 'Enter area name here..' //placeholder text
      });
+     var name = input._value;
+     //var parsed = name.split("value:");
+     //alert(name.toString());
+     Stored_Coordinates.push(new coordinate(name, coord.x, coord.y));
 
  }
 
-let paint = false; //initially set the paint functions to off
+ let paint = false; //initially set the paint functions to off
 
 //function to get current coordinates on the canvas
  function getPosition(event) {
@@ -75,7 +57,7 @@ let paint = false; //initially set the paint functions to off
 
 //function to begin the drawing process
  function startPainting(event) {
-     paint = true;
+     paint = false;
      getPosition(event);
  }
 
@@ -83,6 +65,7 @@ let paint = false; //initially set the paint functions to off
  function stopPainting() {
      paint = false;
  }
+
 //function to actually paint line of mouse
  function sketch(event) {
      if (!paint) return; //if paint is false, do nothing
